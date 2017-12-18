@@ -1,0 +1,7 @@
+<div class="mangan-jelajah-tile col col-33" ng-click="onSelect({item:ngModel.index})">
+    <img ng-src="{{ngModel.gambar[0]}}" class="mangan-image-jelajah" style="border-radius: 10px;">
+    <div class="item item-text-wrap col" style="position:relative; border:0;">
+        <p style="color: black;" ng-bind-html="(ngModel.namaResto | limitTo: 20) + (ngModel.namaResto.length > 20 ? '...' : '')"></p>
+        <p ng-show="ngModel.distance" style="font-size: 12px;"><i class="icon ion-location" style="padding-right: 5px"></i>{{ngModel.distance/1000 | number: 2}} KM</p>
+    </div>
+</div>

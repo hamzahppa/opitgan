@@ -1,0 +1,198 @@
+<ion-view hide-back-button="true" id="jelajah">
+    <ion-nav-title>
+        MANGAN Pilih Kota
+        <button ng-show="locSettings == true" class="button button-clear" id="mangan-pickcity-jelajah" ng-click="showPickCityPopover($event)" style="font-weight: 500;" ion-ripple>{{selectedCity}} <i class="ion-ios-arrow-down"></i></button>
+        <!-- <p ng-show="!locSettings || locSettings == false">Jelajah</p> -->
+    </ion-nav-title>
+        
+    <ion-content padding="false" overflow-scroll="false" class="has-header">
+        <div style="padding: 10px 0 25px;">
+            <!-- Search box -->
+            <form class="list mangan-input-search" ng-submit="searchQuery()">
+                <label class="item item-input item-icon-left" name="Pencarian">
+                    <input type="search" placeholder="Cari kuliner, restoran, atau kaki lima..." ng-model="user.query" ng-focus="typeSearch()">
+                    <i class="icon ion-ios-search-strong"></i>                
+                </label>
+            </form>
+        </div>
+
+        <!-- <div class="card" style="border-radius: 10px; margin: 0 20px;">
+            <div class="item item-text-wrap mangan-text mangan-greeting-card"> -->
+                <!-- <img class="mangan-greeting-gambar" ng-src="{{dataUser.photoUrl}}"> -->
+                <!-- <h2 ng-show="!dataUser.name" style="">Hai</h2>
+                <h2 ng-show="dataUser.name" style="">Hai {{dataUser.name}},</h2>
+                <p style="font-size: 16px;">Mau makan apa hari ini?</p> -->
+            
+                <!-- <p ng-show="lokasiUser" style="color: orangered;"><i class="icon ion-location" style="padding-right:5px"></i>{{lokasiUser}}</p>
+                <p ng-click="greeting()" ng-show="!lokasiUser"><i class="icon ion-ios-location" style="padding-right:5px"></i>Lokasi tidak ditemukan</p> -->
+            <!-- </div>
+        </div> -->
+
+        <div class="row" style="margin: 10px 0 20px 0;">
+            <div class="col" style="padding:0; text-align: center" ui-sref="restorans({category: 'terbaru', 'name': 'Terbaru'})" ion-ripple>
+                <a><img width="50" height="50" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojN0QyRTE2OyIgZD0iTTI1NiwxNzAuMjEzbDEzOC45NzYsMzA3Ljc0NWgyNy4zNGMyMC41MzYtMzEuMjg5LDMyLjQ5Mi02OC43MTQsMzIuNDkyLTEwOC45MzYgIEM0NTQuODA5LDI1OS4yMjIsMzY1Ljc5OSwxNzAuMjEzLDI1NiwxNzAuMjEzeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojOTI0NjMwOyIgZD0iTTI1NiwxNzAuMjEzYy0xMDkuNzk5LDAtMTk4LjgwOSw4OS4wMS0xOTguODA5LDE5OC44MDhjMCw0MC4yMjMsMTEuOTU3LDc3LjY0OCwzMi40OTIsMTA4LjkzNiAgaDMwNS4yOTNjMTcuMTYxLTMxLjI4OSwyNy4xNTEtNjguNzE0LDI3LjE1MS0xMDguOTM2QzQyMi4xMjgsMjU5LjIyMiwzNDcuNzQ5LDE3MC4yMTMsMjU2LDE3MC4yMTN6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM0QjdBMkY7IiBkPSJNNDI3LjU3NCw0MDEuNzAybDE2LjM0LDc2LjI1NWgzMi42ODF2LTI3LjIzNEM0NzYuNTk2LDQyMy42NSw0NTQuNjQ4LDQwMS43MDIsNDI3LjU3NCw0MDEuNzAyeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojNjE5MjQzOyIgZD0iTTQyNy41NzQsNDAxLjcwMmMtMTguNDYyLDAtMzQuNTMzLDEwLjIxMS00Mi44OTQsMjUuMjg3Yy04LjM2MS0xNS4wNzctMjQuNDMxLTI1LjI4Ny00Mi44OTQtMjUuMjg3ICBzLTM0LjUzMywxMC4yMTEtNDIuODk0LDI1LjI4N2MtOC4zNjEtMTUuMDc3LTI0LjQzMS0yNS4yODctNDIuODk0LTI1LjI4N3MtMzQuNTMzLDEwLjIxMS00Mi44OTQsMjUuMjg3ICBjLTguMzYxLTE1LjA3Ny0yNC40MzEtMjUuMjg3LTQyLjg5NC0yNS4yODdzLTM0LjUzMywxMC4yMTEtNDIuODk0LDI1LjI4N2MtOC4zNjEtMTUuMDc3LTI0LjQzMS0yNS4yODctNDIuODk0LTI1LjI4NyAgYy0yNy4wNzQsMC00OS4wMjEsMjEuOTQ3LTQ5LjAyMSw0OS4wMjF2MjcuMjM0aDQwOC41MTF2LTI3LjIzNEM0NDMuOTE1LDQyMy42NSw0MzYuNTk5LDQwMS43MDIsNDI3LjU3NCw0MDEuNzAyeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojQ0NDOUMwOyIgZD0iTTQ2MC4yNTUsNDYxLjYxN2wtMjcuMjM0LDM4LjEyOGgzMi42ODFjOC45ODcsMCwxOC4zNi03LjA3LDIwLjgzLTE1LjcxMmw2LjQwNC0yMi40MTZINDYwLjI1NXoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0U4RTVEQTsiIGQ9Ik00NTMuODUxLDQ4NC4wMzNsNi40MDQtMjIuNDE2SDE5LjA2NGw2LjQwNCwyMi40MTZjMi40Nyw4LjY0MiwxMS44NDIsMTUuNzEyLDIwLjgzLDE1LjcxMmgzODYuNzIzICBDNDQyLjAwOCw0OTkuNzQ1LDQ1MS4zODEsNDkyLjY3NSw0NTMuODUxLDQ4NC4wMzN6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM5MjQ2MzA7IiBkPSJNMzkzLjA4NywzMjMuMTIybDM2LjI3LTk2LjU4NGwxLjQ2Mi0xNS43NDZMMjc2Ljc0LDM0OC4yODFjMjcuNjUyLDI3LjY1Miw3Mi40ODYsMjcuNjUyLDEwMC4xMzgsMCAgQzM4NC4yNTcsMzQwLjkwMywzODkuNjQ2LDMzMi4yOTUsMzkzLjA4NywzMjMuMTIyeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojQTg2QjVBOyIgZD0iTTM1My43NjksMzI1LjE3MmM3LjM3OC03LjM3OCwxMy41MTEtMTUuMjQzLDE4LjI3NS0yMy4wOTRsNTAuMTg5LTgyLjY2NWwwLjAyMS0wLjA1NGw4LjU2Ni04LjU2NiAgbDEuNjk3LTE4LjI4OGwtMzQuMDM0LDMuMTU5bC05Ni41ODQsMzYuMjdjLTkuMTcyLDMuNDQtMTcuNzgxLDguODMtMjUuMTU5LDE2LjIwOWMtMjcuNjUyLDI3LjY1Mi0yNy42NTIsNzIuNDg2LDAsMTAwLjEzOCAgQzI5MS42MywzNjMuMTcxLDMyNi4xMTcsMzUyLjgyNiwzNTMuNzY5LDMyNS4xNzJ6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNDQ0M5QzA7IiBkPSJNNDk3Ljg3OSwxODEuNjExYzAtOC41NDctNC45MzQtMTUuOTI0LTEyLjA5OC0xOS40OTNsLTQ3LjcxNCwyNi45MTJsLTE1LjgxMywzMC4zM2wtMC4wMjEsMC4wNTQgIGw3LjA5NCw3LjA5NGwyMy4xMDktMjMuMTA5aDIzLjY1N0M0ODguMTIzLDIwMy4zOTgsNDk3Ljg3OSwxOTMuNjQ0LDQ5Ny44NzksMTgxLjYxMXoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0U4RTVEQTsiIGQ9Ik00MjIuMjUzLDIxOS4zNTlsMjMuMDcyLTIzLjA3MmwxOC4xOTgtNS40NTljOS4yNTUtMi43NzcsMTkuMDEtMTIuNTMxLDIxLjc4Ny0yMS43ODcgIGMwLjgwNC0yLjY4MSwwLjkxNi01LjAxMiwwLjQ3MS02LjkyM2MtMi45MjItMS40NTUtNi4yMDQtMi4yOTQtOS42ODktMi4yOTRjLTEuNDc2LDAtNS44MTcsMC0xMC44OTQsMGMwLTUuMDc2LDAtOS40MTgsMC0xMC44OTQgIGMwLTEyLjAzMy05Ljc1NC0yMS43ODctMjEuNzg3LTIxLjc4N3MtMjEuNzg3LDkuNzU1LTIxLjc4NywyMS43ODd2MjMuNjU3bC0yMy4xMDksMjMuMTA5bDIzLjcxOSwyMy43MTlMNDIyLjI1MywyMTkuMzU5eiIvPgo8cGF0aCBkPSJNNTAzLjgzLDQ1My40NDdoLTExLjA3MWMtMC4wMjEsMC03Ljk5MywwLTcuOTkzLDB2LTIuNzIzYzAtMTkuNDcyLTkuNzktMzYuNjk0LTI0LjY5OC00Ny4wMjcgIGMxLjkyOC0xMS40MjQsMi45MTEtMjMuMDYxLDIuOTExLTM0LjY3NWMwLTQxLjM4OS0xMi4xMjEtODEuMTY1LTM1LjA5NC0xMTUuMzIybDguNTEzLTIyLjY3MiAgYzMuMTM3LTMuMTYyLDEyLjE5NC0xMi4yMzIsMTkuNDItMTkuNDU5aDIwLjI3MmMxNi41MTgsMCwyOS45NTctMTMuNDM5LDI5Ljk1Ny0yOS45NTdzLTEzLjQzOS0yOS45NTctMjkuOTU3LTI5Ljk1N2gtMi43MjN2LTIuNzIzICBjMC0xNi41MTgtMTMuNDM5LTI5Ljk1Ny0yOS45NTctMjkuOTU3Yy04LjAwMiwwLTE1LjUyNiwzLjExNi0yMS4xODQsOC43NzVzLTguNzc1LDEzLjE4Mi04Ljc3NCwyMS4xODN2MjAuMjcybC0xOS41MTMsMTkuNTEyICBjLTIuNDM3LDAuODctNi40NjIsMi4zNzktMTMuNDM0LDQuOTkzYy0yLjc5OSwxLjA0OS01Ljg4NiwyLjIwNy05LjE3LDMuNDM5Yy0zNC4xNi0yMi45NzgtNzMuOTQyLTM1LjEwMi0xMTUuMzM1LTM1LjEwMiAgYy0xMTQuMTI5LDAtMjA2Ljk3OSw5Mi44NS0yMDYuOTc5LDIwNi45NzljMCwxLjYyMSwwLjAyNSwzLjIzOCwwLjA2Miw0Ljg1YzAuMTAxLDQuNDQ4LDMuNzM5LDcuOTg1LDguMTY1LDcuOTg1ICBjMC4wNjIsMCwwLjEyNS0wLjAwMSwwLjE4OC0wLjAwMmM0LjUxMS0wLjEwMiw4LjA4NS0zLjg0MSw3Ljk4My04LjM1M2MtMC4wMzUtMS40ODktMC4wNTgtMi45ODItMC4wNTgtNC40NzkgIGMwLTEwNS4xMTgsODUuNTItMTkwLjYzOCwxOTAuNjM4LTE5MC42MzhjMzQuMTEsMCw2Ny4wMjUsOC45NDEsOTYuMTA5LDI1Ljk3N2MtMS41OTksMC42LTMuMjA1LDEuMjAzLTQuODExLDEuODA1bC00OC4yNjksMTguMTE5ICBjLTEwLjYwMywzLjk3Ny0yMC4wNDUsMTAuMDYtMjguMDY5LDE4LjA4MmMtMTQuOTE3LDE0LjkxNy0yMy4xMzIsMzQuNzUxLTIzLjEzMiw1NS44NDdzOC4yMTUsNDAuOTMsMjMuMTMyLDU1Ljg0NyAgYzE0LjkxNywxNC45MTgsMzQuNzUxLDIzLjEzMiw1NS44NDcsMjMuMTMyczQwLjkyOS04LjIxNSw1NS44NDctMjMuMTMyYzguMDE5LTguMDIsMTQuMTAzLTE3LjQ2MiwxOC4wODEtMjguMDY1bDE5LjkzMS01My4wNzQgIGMxNy4wMywyOS4wNzksMjUuOTcsNjEuOTkyLDI1Ljk3LDk2LjA5OWMwLDkuMDc1LTAuNjU1LDE4LjE2NC0xLjkzNCwyNy4xMzVjLTUuNDExLTEuNzAzLTExLjE2NS0yLjYyNC0xNy4xMy0yLjYyNCAgYy0xNi41OSwwLTMyLjE1Nyw3LjIwNi00Mi44OTQsMTkuMzcxYy0xMC43MzctMTIuMTY1LTI2LjMwNC0xOS4zNzEtNDIuODk0LTE5LjM3MWMtMTYuNTksMC0zMi4xNTcsNy4yMDYtNDIuODk0LDE5LjM3MSAgYy0xMC43MzctMTIuMTY1LTI2LjMwNC0xOS4zNzEtNDIuODk0LTE5LjM3MXMtMzIuMTU3LDcuMjA2LTQyLjg5NCwxOS4zNzFjLTEwLjczNy0xMi4xNjUtMjYuMzA0LTE5LjM3MS00Mi44OTQtMTkuMzcxICBzLTMyLjE1Nyw3LjIwNi00Mi44OTQsMTkuMzcxYy0xMC43MzctMTIuMTY1LTI2LjMwNC0xOS4zNzEtNDIuODk0LTE5LjM3MWMtMzEuNTM1LDAtNTcuMTkxLDI1LjY1Ny01Ny4xOTEsNTcuMTkxdjIuNzIzSDguMTcgIGMtNC41MTMsMC04LjE3LDMuNjU3LTguMTcsOC4xN2MwLDQuNTEzLDMuNjU3LDguMTcsOC4xNyw4LjE3aDQuNzNsNC43MTMsMTYuNDkxYzMuNDY2LDEyLjEzMiwxNi4wNjYsMjEuNjM3LDI4LjY4NSwyMS42MzdoNDE5LjQwNCAgYzEyLjYxOSwwLDI1LjIxOS05LjUwNSwyOC42ODYtMjEuNjM3bDQuNzEyLTE2LjQ5MWg0LjczYzQuNTEzLDAsOC4xNy0zLjY1Nyw4LjE3LTguMTdDNTEyLDQ1Ny4xMDQsNTA4LjM0Myw0NTMuNDQ3LDUwMy44Myw0NTMuNDQ3eiAgIE0zODUuNDM3LDMyMC4yNTJjLTMuMTU0LDguNDA3LTcuOTc3LDE1Ljg5My0xNC4zMzcsMjIuMjUyYy0xMS44MjksMTEuODMtMjcuNTYsMTguMzQ3LTQ0LjI5MSwxOC4zNDdzLTMyLjQ2Mi02LjUxNS00NC4yOTEtMTguMzQ3ICBjLTExLjgzLTExLjgyOS0xOC4zNDctMjcuNTYtMTguMzQ3LTQ0LjI5MXM2LjUxNS0zMi40NjIsMTguMzQ3LTQ0LjI5MWM2LjM2MS02LjM2MiwxMy44NDctMTEuMTg2LDIyLjI1NS0xNC4zMzggIGMyNy41NDctMTAuMzQzLDc2LjI0OS0yOC42MjUsOTEuNjc2LTM0LjM5OWwzLjk5MSwzLjk5MWMxLjU5NiwxLjU5NSwzLjY4OCwyLjM5Miw1Ljc3OCwyLjM5MnM0LjE4Mi0wLjc5Nyw1Ljc3OC0yLjM5MiAgYzMuMTkxLTMuMTkyLDMuMTkxLTguMzY0LDAtMTEuNTU1bC0xLjkyNi0xLjkyNmwxNy4zMzItMTcuMzMxYzEuNTMzLTEuNTMzLDIuMzkzLTMuNjEsMi4zOTMtNS43Nzh2LTIzLjY1OCAgYzAtMy42MzYsMS40MTYtNy4wNTYsMy45ODgtOS42MjhjMi41NzEtMi41NzEsNS45OTItMy45ODgsOS42MjktMy45ODhjNy41MDksMCwxMy42MTcsNi4xMDgsMTMuNjE3LDEzLjYxN3YxMC44OTYgIGMwLjAwMSw0LjUxMSwzLjY1Nyw4LjE2Nyw4LjE2OCw4LjE2OGgxMC44OTZjNy41MDksMCwxMy42MTcsNi4xMDgsMTMuNjE3LDEzLjYxN3MtNi4xMDgsMTMuNjE3LTEzLjYxNywxMy42MTdoLTIzLjY1NyAgYy0yLjE2NywwLTQuMjQ0LDAuODYxLTUuNzc4LDIuMzkyYzAsMC01Ljc3MSw1Ljc3My0xMS41NDMsMTEuNTUyYy0yLjg4NywyLjg5MS01Ljc3Niw1Ljc4Ni03Ljk0LDcuOTYgIGMtNC4xMTUsNC4xMzItNS40ODIsNS41MDUtNS44NjEsNy41ODdsLTEwLjIwMiwyNy4xNjRDNDExLjEsMjUxLjkxNywzODUuNDM3LDMyMC4yNTIsMzg1LjQzNywzMjAuMjUyeiBNNDMuNTc0LDQ1MC43MjMgIGMwLTIyLjUyNiwxOC4zMjUtNDAuODUxLDQwLjg1MS00MC44NTFjMTQuODQsMCwyOC41MzgsOC4wNzgsMzUuNzQ4LDIxLjA4YzEuNDM5LDIuNTk3LDQuMTc2LDQuMjA3LDcuMTQ1LDQuMjA3ICBzNS43MDUtMS42MTEsNy4xNDUtNC4yMDdjNy4yMS0xMy4wMDMsMjAuOTA4LTIxLjA4LDM1Ljc0OC0yMS4wOGMxNC44NCwwLDI4LjUzOCw4LjA3OCwzNS43NDksMjEuMDggIGMxLjQzOSwyLjU5Nyw0LjE3Niw0LjIwNyw3LjE0NSw0LjIwN2MyLjk3LDAsNS43MDUtMS42MTEsNy4xNDUtNC4yMDdjNy4yMS0xMy4wMDMsMjAuOTA4LTIxLjA4LDM1Ljc0OS0yMS4wOCAgczI4LjUzOCw4LjA3OCwzNS43NDksMjEuMDhjMS40MzksMi41OTcsNC4xNzYsNC4yMDcsNy4xNDUsNC4yMDdzNS43MDUtMS42MTEsNy4xNDUtNC4yMDdjNy4yMS0xMy4wMDMsMjAuOTA4LTIxLjA4LDM1Ljc0OS0yMS4wOCAgczI4LjUzOCw4LjA3OCwzNS43NDksMjEuMDhjMS40MzksMi41OTcsNC4xNzYsNC4yMDcsNy4xNDUsNC4yMDdzNS43MDUtMS42MTEsNy4xNDUtNC4yMDdjNy4yMS0xMy4wMDMsMjAuOTA4LTIxLjA4LDM1Ljc0OS0yMS4wOCAgYzIyLjUyNiwwLDQwLjg1MSwxOC4zMjUsNDAuODUxLDQwLjg1MXYyLjcyM0g0My41NzRWNDUwLjcyM3ogTTQ3OC42NzYsNDgxLjc4OWMtMS40NjQsNS4xMjEtNy42NDgsOS43ODYtMTIuOTc0LDkuNzg2SDQ2LjI5OCAgYy01LjMyNywwLTExLjUxLTQuNjY1LTEyLjk3My05Ljc4NmwtMy40MjgtMTIuMDAxaDQ1Mi4yMDlMNDc4LjY3Niw0ODEuNzg5eiIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNCRTkwODM7IiBkPSJNMjIzLjMxOSwxMzcuNTMyYzAsNC41MTMsMy42NTcsOC4xNyw4LjE3LDguMTdzOC4xNy0zLjY1Nyw4LjE3LTguMTcgICBjMC04LjQzNSwxLjk5NS0xMi4yNTksNC41Mi0xNy4wOThjMi45ODgtNS43MjYsNi4zNzQtMTIuMjE1LDYuMzc0LTI0LjY1OHMtMy4zODYtMTguOTMzLTYuMzc0LTI0LjY1OSAgIGMtMi41MjUtNC44NDEtNC41Mi04LjY2NS00LjUyLTE3LjEwMnMxLjk5NS0xMi4yNjEsNC41Mi0xNy4xMDJjMi45ODgtNS43MjYsNi4zNzQtMTIuMjE2LDYuMzc0LTI0LjY1OSAgIGMwLTQuNTEzLTMuNjU3LTguMTctOC4xNy04LjE3Yy00LjUxMywwLTguMTcsMy42NTctOC4xNyw4LjE3YzAsOC40MzYtMS45OTUsMTIuMjYtNC41MiwxNy4xMDEgICBjLTIuOTg4LDUuNzI2LTYuMzc0LDEyLjIxNi02LjM3NCwyNC42NnMzLjM4NiwxOC45MzQsNi4zNzQsMjQuNjZjMi41MjUsNC44NDEsNC41Miw4LjY2NSw0LjUyLDE3LjEwMSAgIGMwLDguNDM1LTEuOTk1LDEyLjI1OS00LjUyLDE3LjA5OEMyMjYuNzA1LDExOC42LDIyMy4zMTksMTI1LjA4OSwyMjMuMzE5LDEzNy41MzJ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojQkU5MDgzOyIgZD0iTTI4OC42ODEsMTM3LjUzMmMwLDQuNTEzLDMuNjU3LDguMTcsOC4xNyw4LjE3YzQuNTEzLDAsOC4xNy0zLjY1Nyw4LjE3LTguMTcgICBjMC04LjQzNSwxLjk5NS0xMi4yNTksNC41Mi0xNy4wOThjMi45ODgtNS43MjYsNi4zNzQtMTIuMjE1LDYuMzc0LTI0LjY1OHMtMy4zODYtMTguOTMzLTYuMzc0LTI0LjY1OSAgIGMtMi41MjUtNC44NDEtNC41Mi04LjY2NS00LjUyLTE3LjEwMnMxLjk5NS0xMi4yNjEsNC41Mi0xNy4xMDJjMi45ODgtNS43MjYsNi4zNzQtMTIuMjE2LDYuMzc0LTI0LjY1OSAgIGMwLTQuNTEzLTMuNjU3LTguMTctOC4xNy04LjE3Yy00LjUxMywwLTguMTcsMy42NTctOC4xNyw4LjE3YzAsOC40MzYtMS45OTUsMTIuMjYtNC41MiwxNy4xMDEgICBjLTIuOTg4LDUuNzI2LTYuMzc0LDEyLjIxNi02LjM3NCwyNC42NnMzLjM4NiwxOC45MzQsNi4zNzQsMjQuNjZjMi41MjUsNC44NDEsNC41Miw4LjY2NSw0LjUyLDE3LjEwMSAgIGMwLDguNDM1LTEuOTk1LDEyLjI1OS00LjUyLDE3LjA5OEMyOTIuMDY3LDExOC42LDI4OC42ODEsMTI1LjA4OSwyODguNjgxLDEzNy41MzJ6Ii8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /></a>
+                <br><p style="color: #4d544d; padding-top: 10px;">Baru Diulas</p>
+            </div>
+            <div class="col" style="padding:0; text-align: center" ui-sref="terdekat" ion-ripple>
+                <a><img width="50" height="50" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzNlYjM4YTt9LmNscy0ye2ZpbGw6IzE0MWYzODt9LmNscy0ze2ZpbGw6IzgxYzlhYzt9LmNscy00e2ZpbGw6I2ZmNWY2ZTt9LmNscy01e2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPm1hcC1maWxsZWQ8L3RpdGxlPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIxMjQuNzIgNDc5LjE4IDYuNTcgNDM5LjggMzIuODIgMTY0LjEgMTM3Ljg1IDIwMy40OSAxMjQuNzIgNDc5LjE4Ii8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTI0LjcyLDQ4NS43NGE2LjYxLDYuNjEsMCwwLDEtMi4wOC0uMzRMNC40OSw0NDZBNi41Nyw2LjU3LDAsMCwxLDAsNDM5LjE3TDI2LjI5LDE2My40OEE2LjU3LDYuNTcsMCwwLDEsMzUuMTMsMTU4bDEwNSwzOS4zOGE2LjU3LDYuNTcsMCwwLDEsNC4yNSw2LjQ2TDEzMS4yOCw0NzkuNDlhNi41Nyw2LjU3LDAsMCwxLTYuNTYsNi4yNVpNMTMuNTksNDM1LjIybDEwNSwzNUwxMzEuMDYsMjA4bC05Mi41Mi0zNC43WiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMyIgcG9pbnRzPSIyNTYgNDM5LjggMTI0LjcyIDQ3OS4xOCAxMzcuODUgMjAzLjQ5IDI1NiAxNjQuMSAyNTYgNDM5LjgiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMjQuNzIsNDg1Ljc0YTYuNTYsNi41NiwwLDAsMS02LjU2LTYuODhsMTMuMTMtMjc1LjY5YTYuNTcsNi41NywwLDAsMSw0LjQ4LTUuOTJsMTE4LjE1LTM5LjM4YTYuNTcsNi41NywwLDAsMSw4LjY0LDYuMjNWNDM5LjhhNi41Nyw2LjU3LDAsMCwxLTQuNjgsNi4yOUwxMjYuNiw0ODUuNDdBNi41NCw2LjU0LDAsMCwxLDEyNC43Miw0ODUuNzRabTE5LjQ3LTI3Ny40NUwxMzEuNzIsNDcwLjIzbDExNy43Mi0zNS4zMlYxNzMuMjFaTTI1Niw0MzkuOGgwWiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIzODcuMjggNDc5LjE4IDI1NiA0MzkuOCAyNTYgMTY0LjEgMzc0LjE1IDIwMy40OSAzODcuMjggNDc5LjE4Ii8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzg3LjI4LDQ4NS43NGE2LjUxLDYuNTEsMCwwLDEtMS44OC0uMjhMMjU0LjEyLDQ0Ni4wOGE2LjU3LDYuNTcsMCwwLDEtNC42OC02LjI5VjE2NC4xYTYuNTcsNi41NywwLDAsMSw4LjY0LTYuMjNsMTE4LjE1LDM5LjM4YTYuNTcsNi41NywwLDAsMSw0LjQ4LDUuOTJsMTMuMTMsMjc1LjY5YTYuNTYsNi41NiwwLDAsMS02LjU2LDYuODhaTTI2Mi41Nyw0MzQuOTFsMTE3LjcyLDM1LjMyTDM2Ny44MSwyMDguMjksMjYyLjU3LDE3My4yMVoiLz48cG9seWdvbiBjbGFzcz0iY2xzLTMiIHBvaW50cz0iNTA1LjQ0IDQzOS44IDM4Ny4yOCA0NzkuMTggMzc0LjE1IDIwMy40OSA0NzkuMTggMTY0LjEgNTA1LjQ0IDQzOS44Ii8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzg3LjI4LDQ4NS43NGE2LjU3LDYuNTcsMCwwLDEtNi41Ni02LjI1TDM2Ny42LDIwMy44YTYuNTcsNi41NywwLDAsMSw0LjI1LTYuNDZsMTA1LTM5LjM4YTYuNTYsNi41NiwwLDAsMSw4Ljg0LDUuNTNMNTEyLDQzOS4xN2E2LjU2LDYuNTYsMCwwLDEtNC40Niw2Ljg1TDM4OS4zNiw0ODUuNDFBNi42MSw2LjYxLDAsMCwxLDM4Ny4yOCw0ODUuNzRaTTM4MC45NCwyMDhsMTIuNDksMjYyLjI2LDEwNS0zNS0yNC45NS0yNjJaIi8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMzU3LjA5LDEzMy45MUMzNTcuMDksMTg5Ljc0LDI1NiwzMjEuNjQsMjU2LDMyMS42NFMxNTQuOTEsMTg5Ljc0LDE1NC45MSwxMzMuOTFhMTAxLjA5LDEwMS4wOSwwLDAsMSwyMDIuMTcsMFoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yNTYsMzMyLjQzbC01LjIxLTYuOGMtNC4xOC01LjQ2LTEwMi40NC0xMzQuMzMtMTAyLjQ0LTE5MS43M2ExMDcuNjUsMTA3LjY1LDAsMSwxLDIxNS4zLDBjMCw1Ny40LTk4LjI2LDE4Ni4yNy0xMDIuNDQsMTkxLjczWm0wLTI5M2E5NC42Myw5NC42MywwLDAsMC05NC41Miw5NC41MmMwLDQ1Ljg4LDc0LDE0OS4wNyw5NC41MiwxNzYuNzksMjAuNTEtMjcuNzIsOTQuNTItMTMwLjkyLDk0LjUyLTE3Ni43OUE5NC42Myw5NC42MywwLDAsMCwyNTYsMzkuMzhaIi8+PGNpcmNsZSBjbGFzcz0iY2xzLTUiIGN4PSIyNTYiIGN5PSIxMzcuODUiIHI9IjM5LjM4Ii8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMjU2LDE4My43OWE0NS45NSw0NS45NSwwLDEsMSw0NS45NS00NS45NUE0Niw0NiwwLDAsMSwyNTYsMTgzLjc5Wk0yNTYsMTA1YTMyLjgyLDMyLjgyLDAsMSwwLDMyLjgyLDMyLjgyQTMyLjg2LDMyLjg2LDAsMCwwLDI1NiwxMDVaIi8+PC9zdmc+" />
+                </a><br><p style="color: #4d544d; padding-top: 10px;">Disekitar</p>
+            </div>
+            <div class="col" style="padding:0; text-align: center" ui-sref="promo" ion-ripple>
+                <a><img width="50" height="50" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0VENTU2NDsiIGQ9Ik0xNTIsMTY1LjM0NGwtNDYtMzMuMzI4YzAsMC05Mi42NzItNS4zNDQtOTUuMzI4LTcuMzQ0bDQsMjU4LjY3Mmw4MS4zMjgsNGwyOS4zMjgtMjZsNDAsMTYuNjcyICBMMTUyLDE2NS4zNDR6Ii8+Cjxwb2x5Z29uIHN0eWxlPSJmaWxsOiNGRkNFNTQ7IiBwb2ludHM9IjE1MywzODAgNDk1LDM4MCA0OTUsMTI4IDE1MywxMjggMTI4LDE2OC44NDQgMTI4LDM1MCAiLz4KPHBhdGggZD0iTTUwMS4zNDQsMTE3LjM0NGgtMzUyTDEyOCwxMzguNjU2bC0yMS4zMjgtMjEuMzEyaC05NkM0Ljc4MSwxMTcuMzQ0LDAsMTIyLjEwOSwwLDEyOHYyNTYgIGMwLDUuODkxLDQuNzgxLDEwLjY1NiwxMC42NzIsMTAuNjU2aDk2TDEyOCwzNzMuMzQ0bDIxLjM0NCwyMS4zMTJoMzUyYzUuODkxLDAsMTAuNjU2LTQuNzY2LDEwLjY1Ni0xMC42NTZWMTI4ICBDNTEyLDEyMi4xMDksNTA3LjIzNCwxMTcuMzQ0LDUwMS4zNDQsMTE3LjM0NHogTTQ5MC42NzIsMzczLjM0NGgtMzMyLjVsLTE1LjA3OC0xNS4wOTRMMTI4LDM0My4xNTZsLTE1LjA3OCwxNS4wOTRsLTE1LjA3OCwxNS4wOTQgIGgtNzYuNVYxMzguNjU2aDc2LjVsMTUuMDc4LDE1LjA5NEwxMjgsMTY4Ljg0NGwxNS4wOTQtMTUuMDk0bDE1LjA3OC0xNS4wOTRoMzMyLjVWMzczLjM0NHoiLz4KPHBhdGggZD0iTTI3Ny4zNDQsMjU2QzMwMC45MDYsMjU2LDMyMCwyMzYuOTA2LDMyMCwyMTMuMzQ0cy0xOS4wOTQtNDIuNjg4LTQyLjY1Ni00Mi42ODhzLTQyLjY3MiwxOS4xMjUtNDIuNjcyLDQyLjY4OCAgUzI1My43ODEsMjU2LDI3Ny4zNDQsMjU2eiBNMjc3LjM0NCwxOTJjMTEuNzY2LDAsMjEuMzI4LDkuNTYyLDIxLjMyOCwyMS4zNDRjMCwxMS43NS05LjU2MiwyMS4zMTItMjEuMzI4LDIxLjMxMiAgUzI1NiwyMjUuMDk0LDI1NiwyMTMuMzQ0QzI1NiwyMDEuNTYyLDI2NS41NzgsMTkyLDI3Ny4zNDQsMTkyeiIvPgo8cGF0aCBkPSJNMzYyLjY3MiwyNTZDMzM5LjEwOSwyNTYsMzIwLDI3NS4wOTQsMzIwLDI5OC42NTZzMTkuMTA5LDQyLjY4OCw0Mi42NzIsNDIuNjg4czQyLjY3Mi0xOS4xMjUsNDIuNjcyLTQyLjY4OCAgUzM4Ni4yMzQsMjU2LDM2Mi42NzIsMjU2eiBNMzYyLjY3MiwzMjBjLTExLjc2NiwwLTIxLjMyOC05LjU2Mi0yMS4zMjgtMjEuMzQ0YzAtMTEuNzUsOS41NjItMjEuMzEyLDIxLjMyOC0yMS4zMTIgIFMzODQsMjg2LjkwNiwzODQsMjk4LjY1NkMzODQsMzEwLjQzOCwzNzQuNDM4LDMyMCwzNjIuNjcyLDMyMHoiLz4KPHBhdGggZD0iTTI0NS4zNDQsMzQxLjM0NGMyLjkzOCwwLDUuNjA5LTEuMjAzLDcuNTQ3LTMuMTI1bDAsMGwxNDkuMzI4LTE0OS4zNDRsMCwwYzEuOTM4LTEuOTM4LDMuMTI1LTQuNTk0LDMuMTI1LTcuNTMxICBjMC01LjkwNi00Ljc4MS0xMC42ODgtMTAuNjcyLTEwLjY4OGMtMi45MzgsMC01LjYwOSwxLjIwMy03LjU0NywzLjEyNWwwLDBMMjM3Ljc5NywzMjMuMTI1bDAsMCAgYy0xLjkyMiwxLjkzOC0zLjEyNSw0LjU5NC0zLjEyNSw3LjUzMUMyMzQuNjcyLDMzNi41NjIsMjM5LjQ1MywzNDEuMzQ0LDI0NS4zNDQsMzQxLjM0NHoiLz4KPHBhdGggZD0iTTEyOCwxODEuMzQ0Yy01Ljg3NSwwLTEwLjY1Niw0Ljc2Ni0xMC42NTYsMTAuNjU2czQuNzgxLDEwLjY1NiwxMC42NTYsMTAuNjU2YzUuOTA2LDAsMTAuNjcyLTQuNzY2LDEwLjY3Mi0xMC42NTYgIFMxMzMuOTA2LDE4MS4zNDQsMTI4LDE4MS4zNDR6Ii8+CjxwYXRoIGQ9Ik0xMjgsMjI0Yy01Ljg3NSwwLTEwLjY1Niw0Ljc4MS0xMC42NTYsMTAuNjU2YzAsNS45MDYsNC43ODEsMTAuNjg4LDEwLjY1NiwxMC42ODhjNS45MDYsMCwxMC42NzItNC43ODEsMTAuNjcyLTEwLjY4OCAgQzEzOC42NzIsMjI4Ljc4MSwxMzMuOTA2LDIyNCwxMjgsMjI0eiIvPgo8cGF0aCBkPSJNMTI4LDI2Ni42NTZjLTUuODc1LDAtMTAuNjU2LDQuNzgxLTEwLjY1NiwxMC42ODhjMCw1Ljg3NSw0Ljc4MSwxMC42NTYsMTAuNjU2LDEwLjY1NmM1LjkwNiwwLDEwLjY3Mi00Ljc4MSwxMC42NzItMTAuNjU2ICBDMTM4LjY3MiwyNzEuNDM4LDEzMy45MDYsMjY2LjY1NiwxMjgsMjY2LjY1NnoiLz4KPHBhdGggZD0iTTEyOCwzMDkuMzQ0Yy01Ljg3NSwwLTEwLjY1Niw0Ljc2Ni0xMC42NTYsMTAuNjU2czQuNzgxLDEwLjY1NiwxMC42NTYsMTAuNjU2YzUuOTA2LDAsMTAuNjcyLTQuNzY2LDEwLjY3Mi0xMC42NTYgIFMxMzMuOTA2LDMwOS4zNDQsMTI4LDMwOS4zNDR6Ii8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                </a><br><p style="color: #4d544d; padding-top: 10px;">Promo</p>
+            </div>    
+        </div>
+
+        <!-- <a-carousel
+            item-directive="name-of-your-directive"
+            carousel-options="::vm.carouselOptions"
+            array-provider="::vm.carouselData"
+            on-select="vm.onSelectCarousel(item)">
+        </a-carousel> -->
+            <div class="item item-divider mangan-item-divider" ng-show="showRecomendation"></div>
+            <!-- Kategori    -->
+            <div class="item item-text-wrap" style="border: 0;">
+                <span ng-show="showRecomendation">Favorit di {{selectedCity || 'Surakarta'}}</span>
+                <span style="font-size: 14px; float: right;" ng-show="showRecomendation" ng-click="openAll()">
+                    Lihat semua 
+                    <i class="icon ion-ios-arrow-forward" style="padding-left: 5px;"></i>
+                </span>
+            </div>
+            <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false" auto-play="true" slide-interval="6000" does-continue="true" style="margin-top: 0px;">
+                <ion-slide ng-repeat="slideRestoran in slideRestorans" style="text-align: left;">
+                    <div class="row gallery">
+                        <div class="mangan-jelajah-tile col col-33" ng-repeat="restoran in slideRestoran" ng-click="openRestoran(restoran.index)">
+                            <img ng-src="{{restoran.imgRec}}" class="mangan-image-jelajah" style="border-radius: 10px;">
+                            <div class="item item-text-wrap col" style="position:relative; border:0;">
+                                <p style="color: black;" ng-bind-html="(restoran.namaResto | limitTo: 20) + (restoran.namaResto.length > 20 ? '...' : '')"></p>
+                                <p ng-show="restoran.distance" style="font-size: 12px;"><i class="icon ion-location" style="padding-right: 5px"></i>{{restoran.distance/1000 | number: 2}} KM</p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+
+            <div class="item item-divider mangan-item-divider" ng-show="selected"></div>
+
+            <!-- Slider Dinamis -->
+            <!-- <ion-slides ng-show="sliders || sliders.length > 0" options="sliderOptions" class="row mangan-slider-ads" style="background-color:white;">
+                <ion-slide-page ng-repeat="slider in sliders" ng-click="gotoURL(slider.index, slider.linkUrl, slider.tel)" on-swipe-left="next()" on-swipe-right="previous()">
+                    <img ng-src="{{ image[$index] }}">
+                </ion-slide-page>
+            </ion-slides> -->
+
+            <!-- Kategori    -->
+            <ion-item class="item-text-wrap" style="border: 0; padding-top: 0;" ng-show="connected">Kategori</ion-item>
+            <div class="row gallery" style="background-color: white;">
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.indonesia" ion-ripple>
+                    <a ui-sref="restorans({category: 'indonesia', 'name': 'Khas Indonesia'})">
+                        <h3>KHAS INDONESIA</h3>
+                        <div style="background-color:black;">    
+                            <img src="img/indonesia.jpg">                   
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative; width:100%;" ng-show="category.baksoSupMie" ion-ripple>
+                    <a ui-sref="restorans({category: 'baksoSupMie', 'name': 'Bakso, Sup & Mie'})">
+                        <h3 style="z-index: 999;">BAKSO, SUP & MIE</h3>
+                        <div style="background-color:black;">
+                            <img src="img/noodle.jpg">                        
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.cakeDessert" ion-ripple>
+                    <a ui-sref="restorans({category: 'cakeDessert', 'name': 'Cake & Dessert'})">
+                        <h3>CAKE & DESSERT</h3>
+                        <div style="background-color:black;">
+                            <img src="img/cake.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative; width:100%;" ng-show="category.minumanEskrim" ion-ripple>
+                    <a ui-sref="restorans({category: 'minumanEskrim', 'name': 'ES & Minuman Segar'})">
+                        <h3>ES & MINUMAN SEGAR</h3>
+                        <div style="background-color:black;">
+                            <img src="img/minumanes.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.steakSosis" ion-ripple>
+                    <a ui-sref="restorans({category: 'steakSosis', 'name': 'Steak & Sosis'})">
+                        <h3>STEAK & SOSIS</h3>
+                        <div style="background-color:black;">
+                            <img src="img/steak.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative; width:100%;" ng-show="category.cepatsaji" ion-ripple>
+                    <a ui-sref="restorans({category: 'cepatsaji', 'name': 'Cepat Saji'})">
+                        <h3>CEPAT SAJI</h3>
+                        <div style="background-color:black;">
+                            <img src="img/cepatsaji.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative; width:100%;" ng-show="category.cafeResto" ion-ripple>
+                    <a ui-sref="restorans({category: 'cafeResto', 'name': 'Cafe & Resto'})">
+                        <h3>CAFE & RESTO</h3>
+                        <div style="background-color:black;">
+                            <img src="img/caferesto.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.asian" ion-ripple>
+                    <a ui-sref="restorans({category: 'asian', 'name': 'Asian Food'})">
+                        <h3>ASIAN FOOD</h3>
+                        <div style="background-color:black;">
+                            <img src="img/asian.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.western" ion-ripple>
+                    <a ui-sref="restorans({category: 'western', 'name': 'Western Food'})">
+                        <h3>WESTERN FOOD</h3>
+                        <div style="background-color:black;">
+                            <img src="img/western.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.streetFood" ion-ripple>
+                    <a ui-sref="restorans({category: 'streetFood', 'name': 'Street Food'})">
+                        <h3>STREET FOOD</h3>
+                        <div style="background-color:black;">
+                            <img src="img/streetfood.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.oleholeh" ion-ripple>
+                    <a ui-sref="restorans({category: 'oleholeh', 'name': 'Oleh-oleh'})">
+                        <h3>OLEH-OLEH</h3>
+                        <div style="background-color:black;">
+                            <img src="img/oleholeh.jpg">
+                        </div>
+                    </a>
+                </div>
+                <div class="mangan-image-category col col-50" style="position:relative;" ng-show="category.wedangan" ion-ripple>
+                    <a ui-sref="restorans({category: 'wedangan', 'name': 'Wedangan'})">
+                        <h3>WEDANGAN</h3>
+                        <div style="background-color:black;">
+                            <img src="img/wedangan.jpg">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Rekomendasi & Daftar Kuliner -->
+            <div class="item item-text-wrap" style="border-top:0; text-align: center;" ng-show="connected">
+                <p>Berikan Rekomendasi atau Daftarkan Usaha Kulinermu</p>
+            </div>
+            <div class="row list" ng-show="connected">
+                <div class="col item item-text-wrap" id="mangan-button-rekomendasi">
+                    <button class="button button-small button-oren button-clear" style="width: 100%;" ng-click="rekomendasikan()" ion-ripple>REKOMENDASIKAN</button>
+                </div>
+                <div class="col item item-text-wrap" id="mangan-button-daftar" >
+                    <button class="button button-small button-oren button-clear" style="width: 100%;" ng-click="daftar()" ion-ripple>DAFTAR KULINER</button>
+                </div>
+            </div>
+    </ion-content>
+</ion-view>

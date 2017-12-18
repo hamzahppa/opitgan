@@ -1,0 +1,80 @@
+<ion-view view-title="Profil" id="profil">
+  <ion-content overflow-scroll="false" class="has-header home-bg">
+  <div style="position: relative;" ng-show="dataUser">
+      <div class="list" style="background-color: transparent;">
+        <div class="mangan-image-profil">
+          <center><img ng-src="{{dataUser.photoUrl}}"></center>
+          <h4 style="text-align: center;color: white;margin-top: 0;">{{dataUser.name}}</h4>
+        </div>
+      </div>
+      <div class="list" style="margin-top: 50px;">
+        <div class="row item mangan-item-clear">
+          <div class="col col-10">
+            <i class="icon mangan-icon-left ion-android-person"></i>
+          </div>
+          <div class="col">
+            <label class="item-input item-stacked-label item-text-wrap">
+              <span class="input-label" style="width:auto;">Nama Lengkap</span>
+                <input type="text" placeholder="Nama Lengkap" ng-model="dataUser.name">
+            </label>
+          </div>
+        </div>
+
+        <div class="row item mangan-item-clear">
+          <div class="col col-10">
+            <i class="icon mangan-icon-left ion-android-calendar"></i>
+          </div>
+          <div class="col">
+            <label class="item-input item-stacked-label item-text-wrap">
+              <span class="input-label" style="width:auto;">Tanggal Lahir</span>
+                <!-- <input type="text" placeholder="Tanggal Lahir" ng-model="getDate(dataUser.dateOfBirth)" readonly="true"> -->
+                <p>{{getDate(dataUser.dateOfBirth)}}</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="row item mangan-item-clear">
+          <div class="col col-10">
+            <i class="icon mangan-icon-left ion-email"></i>
+          </div>
+          <div class="col">
+            <label class="item-input item-stacked-label item-text-wrap">
+              <span class="input-label" style="width:auto;">Email</span>
+                <input type="text" placeholder="Email" ng-model="dataUser.email">
+            </label>
+          </div>
+        </div>
+
+        <div class="row item mangan-item-clear">
+          <div class="col col-10">
+            <i class="icon mangan-icon-left ion-android-call"></i>
+          </div>
+          <div class="col">
+            <label class="item-input item-stacked-label item-text-wrap">
+              <span class="input-label" style="width:auto;">Nomor Telepon</span>
+                <input type="text" placeholder="Nomor Telepon" ng-model="dataUser.noTelpUser">
+            </label>
+          </div>
+        </div>
+
+        <!-- <div class="row item mangan-item-clear">
+          <div class="col col-10">
+            <i class="icon mangan-icon-left ion-android-chat"></i>
+          </div>
+          <div class="col">
+            <label class="item-input item-stacked-label item-text-wrap">
+              <span class="input-label" style="width:100%;">LINE ID</span>
+                <input type="text" placeholder="LINE ID" ng-model="dataUser.lineUsername">
+            </label>
+          </div>
+        </div> -->
+      </div>
+      
+      <div class="mangan-divider" style="margin: 0; padding: 0;"></div>
+      <div class="item" style="border: 0; margin-top:0;">
+        <button class="button button-full button-oren" ng-click="updateUserData()">SIMPAN</button>
+        <center><button class="button button-clear button-oren" ng-click="signOut()">Log Out</button></center>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
